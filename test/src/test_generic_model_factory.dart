@@ -64,8 +64,9 @@ class TestGenericModelFactory extends GenericModelFactory {
   @override
   Future<List<T>> findModels<T extends Model>(String collectionName) async {
     if (collectionName == 'test_models') return _testModels as List<T>;
-    if (collectionName == 'persisted_models')
+    if (collectionName == 'persisted_models') {
       return _persistedModels as List<T>;
+    }
     return [];
   }
 
@@ -107,8 +108,9 @@ class TestGenericModelFactory extends GenericModelFactory {
   @override
   Future<T?> deleteModel<T extends Model>(T model) async {
     if (model is TestModel) _testModels.removeWhere((m) => m.id == model.id);
-    if (model is TestPersistedModel)
+    if (model is TestPersistedModel) {
       _persistedModels.removeWhere((m) => m.id == model.id);
+    }
     return model;
   }
 
@@ -323,16 +325,15 @@ void main() {
   });
 
   group('Persistence Tests', () {
-    late TestGenericModelFactory factory;
-
     setUp(() {
-      factory = TestGenericModelFactory();
+      TestGenericModelFactory();
     });
 
     test('is persisted cache model with instance check', () {
       final regularModel = TestModel(id: 1, name: 'Test');
       final persistedModel = TestPersistedModel(id: 1, value: 'Test');
       expect(regularModel is PersistedCacheModel, isFalse);
+      // ignore: unnecessary_type_check
       expect(persistedModel is PersistedCacheModel, isTrue);
     });
   });
