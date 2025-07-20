@@ -1,9 +1,7 @@
 import 'dart:async';
-import 'dart:convert';
 import 'package:flutter_model_cache/flutter_model_cache.dart';
 import 'package:flutter_model_cache/src/local_persistence/persisted_cache_model.dart';
 import 'package:flutter_model_cache/src/model_class_cache.dart';
-import 'package:flutter_model_cache/src/stream_state.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 
