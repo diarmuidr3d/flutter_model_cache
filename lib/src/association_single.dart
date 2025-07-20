@@ -9,14 +9,15 @@ class SingleAssociation<T extends Model> {
   }
 
   factory SingleAssociation.fromJson(
-      String collectionName, Map<String, Object?> json) {
-    var model =
-        ModelFactory().fromJson<T>(collectionName: collectionName, json: json);
-    if (model == null) throw Exception('Model not found');
-    return SingleAssociation<T>(
-      collection: collectionName,
-      id: model.id,
+    String collectionName,
+    Map<String, Object?> json,
+  ) {
+    var model = ModelFactory().fromJson<T>(
+      collectionName: collectionName,
+      json: json,
     );
+    if (model == null) throw Exception('Model not found');
+    return SingleAssociation<T>(collection: collectionName, id: model.id);
   }
 
   int? id;

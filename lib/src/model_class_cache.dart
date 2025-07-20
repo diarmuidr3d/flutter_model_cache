@@ -87,8 +87,9 @@ class ModelClassCache<T extends Model?> {
   StreamController<ModelListStream<T>> modelListStreamController() {
     _modelListStreamController ??=
         StreamController<ModelListStream<T>>.broadcast(
-            onListen: _onListenToModelListStream,
-            onCancel: _onCancelModelListStream);
+          onListen: _onListenToModelListStream,
+          onCancel: _onCancelModelListStream,
+        );
     return _modelListStreamController!;
   }
 
@@ -103,13 +104,16 @@ class ModelClassCache<T extends Model?> {
 
   StreamController<List<T>> streamController() {
     _streamController ??= StreamController<List<T>>.broadcast(
-        onListen: _onListenToStream, onCancel: _onCancelStream);
+      onListen: _onListenToStream,
+      onCancel: _onCancelStream,
+    );
     return _streamController!;
   }
 
   StreamController<T?> streamControllerForId(int id) {
     _streamControllersForId[id] ??= StreamController<T?>.broadcast(
-        onListen: () => _updateStreamControllerForId(id));
+      onListen: () => _updateStreamControllerForId(id),
+    );
     return _streamControllersForId[id]!;
   }
 
@@ -117,10 +121,13 @@ class ModelClassCache<T extends Model?> {
     if (_modelListStreamController != null &&
         _modelListStreamControllerListened) {
       streamState ??= loaded ? StreamStates.loaded : StreamStates.loading;
-      _modelListStreamController!.add(ModelListStream<T>(
+      _modelListStreamController!.add(
+        ModelListStream<T>(
           collectionName: collectionName,
           models: modelCache.values.toList(),
-          streamState: streamState));
+          streamState: streamState,
+        ),
+      );
     }
     if (_streamController != null && _streamControllerListened) {
       _streamController!.add(modelCache.values.toList());

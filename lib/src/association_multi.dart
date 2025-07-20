@@ -6,22 +6,22 @@ class MultiAssociation<T extends Model> {
 
   factory MultiAssociation.fromModels(List<T> models) {
     return MultiAssociation(
-        collection: models.first.collectionName,
-        ids: models.map((e) => e.id!).toList());
+      collection: models.first.collectionName,
+      ids: models.map((e) => e.id!).toList(),
+    );
   }
 
   factory MultiAssociation.fromJson(String collectionName, List<dynamic> json) {
     List<int> ids = [];
     for (var element in json) {
-      var model = ModelFactory()
-          .fromJson<T>(collectionName: collectionName, json: element);
+      var model = ModelFactory().fromJson<T>(
+        collectionName: collectionName,
+        json: element,
+      );
       if (model == null) throw Exception('Model not found');
       ids.add(model.id!);
     }
-    return MultiAssociation<T>(
-      collection: collectionName,
-      ids: ids,
-    );
+    return MultiAssociation<T>(collection: collectionName, ids: ids);
   }
 
   List<int>? ids;
