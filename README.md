@@ -12,7 +12,7 @@ A powerful local caching system for Flutter applications that work with JSON API
 - 📊 **Stream States** - Loading, reloading, and loaded states for better UX
 - 🎯 **Type Safety** - Full generic type support throughout the API
 
-[![Flutter Test](https://github.com/diarmuidr3d/flutter_model_cache/actions/workflows/flutter_build.yml/badge.svg)](https://github.com/diarmuidr3d/flutter_model_cache/actions/workflows/flutter_build.yml) [![pub.dev Publish](https://github.com/diarmuidr3d/flutter_model_cache/actions/workflows/publish.yml/badge.svg)](https://github.com/diarmuidr3d/flutter_model_cache/actions/workflows/publish.yml)
+[![Test](https://github.com/diarmuidr3d/flutter_model_cache/actions/workflows/flutter_build.yml/badge.svg)](https://github.com/diarmuidr3d/flutter_model_cache/actions/workflows/flutter_build.yml) [![Publish](https://github.com/diarmuidr3d/flutter_model_cache/actions/workflows/publish.yml/badge.svg)](https://github.com/diarmuidr3d/flutter_model_cache/actions/workflows/publish.yml) ![Pub](https://img.shields.io/pub/v/flutter_token_auth)
 
 ## Installation
 
