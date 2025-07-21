@@ -17,7 +17,7 @@ void main() async {
   final modelFactory = ModelFactory();
   modelFactory.registerModelClass(
     Animal.classCollectionName,
-    (json) async => Animal.fromJson(json),
+    (json) => Animal.fromJson(json),
   );
   final animal = await modelFactory.findModel(Animal.classCollectionName, 1);
   print(animal);

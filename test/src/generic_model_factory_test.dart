@@ -269,7 +269,7 @@ void main() {
       factory = TestGenericModelFactory();
       factory.registerModelClass<TestModel>(
         'test_models',
-        (json) async => TestModel.fromJson(json),
+        (json) => TestModel.fromJson(json),
       );
     });
 
@@ -284,11 +284,28 @@ void main() {
         json: json,
       );
       expect(model?.name, equals('Test'));
+      expect(model, isA<TestModel>());
       expect(
         factory.peekModel<TestModel>(collection: 'test_models', id: 1),
         isNull,
       );
     });
+
+    test(
+      'model from json returns correct model type even without type param',
+      () {
+        final json = {
+          'id': 1,
+          'name': 'Test',
+          'lastUpdated': DateTime.now().toIso8601String(),
+        };
+        final model = factory.modelFromJson(
+          collectionName: 'test_models',
+          json: json,
+        );
+        expect(model, isA<TestModel>());
+      },
+    );
 
     test('model from json throws for unregistered collection', () {
       final json = {'id': 1, 'name': 'Test'};
@@ -316,9 +333,9 @@ void main() {
     });
 
     test('register model class', () {
-      factory.registerModelClass<TestModel>(
+      factory.registerModelClass(
         'test_models',
-        (json) async => TestModel.fromJson(json),
+        (json) => TestModel.fromJson(json),
       );
       expect(factory.collectionClassMap.containsKey('test_models'), isTrue);
     });

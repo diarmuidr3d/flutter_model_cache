@@ -9,11 +9,12 @@ import 'model_class_cache.dart';
 import 'model_list_stream.dart';
 import 'stream_state.dart';
 
+typedef ModelFromJson<T extends Model> = T Function(Map<String, Object?> json);
+
 abstract class GenericModelFactory {
   final Map<String, ModelClassCache> modelCache = {};
   late final http.BaseClient httpClient;
-  final Map<String, Future<Model> Function(Map<String, Object?> json)>
-  collectionClassMap = {};
+  final Map<String, ModelFromJson> collectionClassMap = {};
 
   Future<List<T>> findModels<T extends Model>(String collectionName);
 
@@ -196,7 +197,7 @@ abstract class GenericModelFactory {
 
   void registerModelClass<T extends Model>(
     String collectionName,
-    Future<T> Function(Map<String, Object?> json) fromJson,
+    ModelFromJson<T> fromJson,
   ) {
     collectionClassMap[collectionName] = fromJson;
   }
