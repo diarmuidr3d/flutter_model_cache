@@ -1,3 +1,7 @@
+## 0.0.5
+
+- Add Fake Model Factory test helper
+
 ## 0.0.4
 
 - Fix for missing exports of enum key

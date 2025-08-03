@@ -1,6 +1,6 @@
 name: flutter_model_cache
 description: A local cache for models that are accessed over json apis.
-version: 0.0.4
+version: 0.0.5
 repository: https://github.com/diarmuidr3d/flutter_model_cache
 
 environment:
