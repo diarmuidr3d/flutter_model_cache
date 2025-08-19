@@ -76,22 +76,20 @@ void main() {
       expect(cache.peek(1)?.id, 1);
     });
 
+    test('stream is not loaded until add', () {
+      final cache = ModelClassCache<TestModel?>('tests');
+      cache.updateStreamController();
+      expect(cache.loaded, false);
+      cache.add(TestModel(id: 1));
+      expect(cache.loaded, true);
+    });
+
     test('stream emits list on add', () {
       final cache = ModelClassCache<TestModel?>('tests');
       final stream = cache.streamController().stream;
       expectLater(
         stream,
         emits(isA<List<TestModel?>>().having((l) => l.length, 'len', 1)),
-      );
-      cache.add(TestModel(id: 1));
-    });
-
-    test('stream does not emit if not loaded', () {
-      final cache = ModelClassCache<TestModel?>('tests');
-      final stream = cache.streamController().stream;
-      expectLater(
-        stream,
-        emits(isA<List<TestModel?>>().having((l) => l.length, 'len', 0)),
       );
       cache.add(TestModel(id: 1));
     });

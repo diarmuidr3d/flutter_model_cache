@@ -131,7 +131,7 @@ class ModelClassCache<T extends Model?> {
         );
       }
     }
-    if (_streamController != null && _streamControllerListened) {
+    if (_streamController != null && _streamControllerListened && loaded) {
       _streamController!.add(modelCache.values.toList());
     }
   }

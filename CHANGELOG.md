@@ -1,3 +1,7 @@
+## 0.0.7
+
+- Also avoif returning early for regular streams.
+
 ## 0.0.6
 
 - Fix issue where model stream returned before find was finished.
