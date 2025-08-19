@@ -1,3 +1,7 @@
+## 0.0.6
+
+- Fix issue where model stream returned before find was finished.
+
 ## 0.0.5
 
 - Add Fake Model Factory test helper

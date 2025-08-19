@@ -121,13 +121,15 @@ class ModelClassCache<T extends Model?> {
     if (_modelListStreamController != null &&
         _modelListStreamControllerListened) {
       streamState ??= loaded ? StreamStates.loaded : StreamStates.loading;
-      _modelListStreamController!.add(
-        ModelListStream<T>(
-          collectionName: collectionName,
-          models: modelCache.values.toList(),
-          streamState: streamState,
-        ),
-      );
+      if (loaded) {
+        _modelListStreamController!.add(
+          ModelListStream<T>(
+            collectionName: collectionName,
+            models: modelCache.values.toList(),
+            streamState: streamState,
+          ),
+        );
+      }
     }
     if (_streamController != null && _streamControllerListened) {
       _streamController!.add(modelCache.values.toList());
