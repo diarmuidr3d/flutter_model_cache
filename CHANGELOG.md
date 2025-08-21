@@ -1,3 +1,7 @@
+## 0.0.9
+
+- Fake Model Factory also marks cache as loaded after find
+
 ## 0.0.8
 
 - ReplaceAll (aka after `findModels`) marks cache as loaded

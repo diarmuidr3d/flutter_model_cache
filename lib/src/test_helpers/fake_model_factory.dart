@@ -63,6 +63,7 @@ class FakeModelFactory extends GenericModelFactory implements ModelFactory {
     models.forEach((value) {
       items.add(value as T);
     });
+    modelCache[collectionName]?.loaded = true;
     return items;
   }
 
