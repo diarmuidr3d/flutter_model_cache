@@ -1,3 +1,7 @@
+## 0.0.8
+
+- ReplaceAll (aka after `findModels`) marks cache as loaded
+
 ## 0.0.7
 
 - Also avoif returning early for regular streams.

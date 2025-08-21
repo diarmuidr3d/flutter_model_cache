@@ -72,6 +72,7 @@ class ModelClassCache<T extends Model?> {
     for (var model in models) {
       add(model);
     }
+    loaded = true; // Otherwise streams will load forever if there are no models
     updateStreamController();
   }
 

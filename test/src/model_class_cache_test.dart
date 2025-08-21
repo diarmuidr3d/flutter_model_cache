@@ -49,10 +49,18 @@ void main() {
       expect(cache.peekAll(), isEmpty);
     });
 
-    test('replaceAll populates cache', () {
-      final cache = ModelClassCache<TestModel?>('tests');
-      cache.replaceAll([TestModel(id: 1), TestModel(id: 2)]);
-      expect(cache.peekAll().length, 2);
+    group('replaceAll', () {
+      test('replaceAll populates cache', () {
+        final cache = ModelClassCache<TestModel?>('tests');
+        cache.replaceAll([TestModel(id: 1), TestModel(id: 2)]);
+        expect(cache.peekAll().length, 2);
+      });
+
+      test('replaceAll marks as loaded even without models', () {
+        final cache = ModelClassCache<TestModel?>('tests');
+        cache.replaceAll([]);
+        expect(cache.loaded, true);
+      });
     });
 
     test('operator index get/set', () {
