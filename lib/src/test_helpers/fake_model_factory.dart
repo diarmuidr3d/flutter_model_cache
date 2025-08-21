@@ -5,6 +5,8 @@ import 'package:flutter_model_cache/src/local_persistence/fake_persisted_cache_s
 import 'package:flutter_model_cache/src/local_persistence/persisted_cache_storage.dart';
 import 'package:flutter_model_cache/src/test_helpers/id_generator.dart';
 
+import '../model_class_cache.dart';
+
 class FakeModelFactory extends GenericModelFactory implements ModelFactory {
   static final FakeModelFactory _modelFactory = FakeModelFactory._new();
 
@@ -57,13 +59,15 @@ class FakeModelFactory extends GenericModelFactory implements ModelFactory {
 
   @override
   Future<List<T>> findModels<T extends Model>(String collectionName) async {
-    var models = modelCache[collectionName];
-    if (models == null) return <T>[];
+    if (modelCache[collectionName] == null) {
+      modelCache[collectionName] = ModelClassCache<T>(collectionName);
+    }
+    final cache = modelCache[collectionName];
     List<T> items = [];
-    models.forEach((value) {
+    cache!.forEach((value) {
       items.add(value as T);
     });
-    modelCache[collectionName]?.loaded = true;
+    cache.loaded = true;
     return items;
   }
 

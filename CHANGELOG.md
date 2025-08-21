@@ -1,3 +1,7 @@
+## 0.0.10
+
+- Fake Model Factory also instantiates a cache if `findModels` is called.
+
 ## 0.0.9
 
 - Fake Model Factory also marks cache as loaded after find
