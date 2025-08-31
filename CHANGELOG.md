@@ -1,3 +1,7 @@
+## 0.0.11
+
+- Fix queryParams for `queryModels`
+
 ## 0.0.10
 
 - Fake Model Factory also instantiates a cache if `findModels` is called.
