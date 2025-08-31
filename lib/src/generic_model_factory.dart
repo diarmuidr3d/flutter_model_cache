@@ -13,7 +13,7 @@ typedef ModelFromJson<T extends Model> = T Function(Map<String, Object?> json);
 
 abstract class GenericModelFactory {
   final Map<String, ModelClassCache> modelCache = {};
-  late final http.BaseClient httpClient;
+  late http.BaseClient httpClient;
   final Map<String, ModelFromJson> collectionClassMap = {};
 
   Future<List<T>> findModels<T extends Model>(String collectionName);

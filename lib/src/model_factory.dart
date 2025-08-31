@@ -106,13 +106,6 @@ class ModelFactory extends GenericModelFactory {
   }) async {
     var url = _urlForCollection(collectionName, queryParams: queryParams);
     try {
-      final paramsToAdd = url.queryParameters;
-      if (queryParams != null) {
-        queryParams.forEach((key, value) {
-          paramsToAdd[key] = value.toString();
-        });
-      }
-      url = url.replace(queryParameters: paramsToAdd);
       var response = await httpClient.get(url);
       if (response.statusCode == 200) {
         var body = json.decode(response.body);
