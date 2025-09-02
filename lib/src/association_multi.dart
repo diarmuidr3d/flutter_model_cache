@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'model.dart';
 import 'model_factory.dart';
 
@@ -43,6 +45,10 @@ class MultiAssociation<T extends Model> {
         .toList();
   }
 
+  Stream<List<int>> get streamIds {
+    return streamIdsController().stream;
+  }
+
   int get length => ids?.length ?? 0;
 
   bool get isEmpty => ids == null || ids!.isEmpty;
@@ -52,6 +58,7 @@ class MultiAssociation<T extends Model> {
   MultiAssociation add(T model) {
     ids ??= [];
     ids!.add(model.id!);
+    updateStreamController();
     return this;
   }
 
@@ -62,6 +69,33 @@ class MultiAssociation<T extends Model> {
     }
     ids = models.map((e) => e.id!).toList();
     collection = models.first.collectionName;
+    updateStreamController();
     return this;
+  }
+
+  bool _streamControllerListened = false;
+  StreamController<List<int>>? _streamController;
+
+  void updateStreamController() {
+    if (_streamController != null && _streamControllerListened) {
+      _streamController!.add(ids!);
+    }
+  }
+
+  void _onListenToStream() {
+    _streamControllerListened = true;
+    updateStreamController();
+  }
+
+  void _onCancelStream() {
+    _streamControllerListened = false;
+  }
+
+  StreamController<List<int>> streamIdsController() {
+    _streamController ??= StreamController<List<int>>.broadcast(
+      onListen: _onListenToStream,
+      onCancel: _onCancelStream,
+    );
+    return _streamController!;
   }
 }

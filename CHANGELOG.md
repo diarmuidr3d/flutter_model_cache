@@ -1,3 +1,7 @@
+## 0.0.12
+
+- Add id streaming to multi association
+
 ## 0.0.11
 
 - Fix queryParams for `queryModels`
