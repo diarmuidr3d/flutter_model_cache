@@ -1,3 +1,7 @@
+## 0.0.13
+
+- When models come in they should be handled as iterable type rather than list
+
 ## 0.0.12
 
 - Add id streaming to multi association

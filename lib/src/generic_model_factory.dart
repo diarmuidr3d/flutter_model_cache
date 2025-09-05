@@ -177,7 +177,7 @@ abstract class GenericModelFactory {
 
   void replaceCacheForCollection<T extends Model>(
     String collectionName,
-    List<T> models,
+    Iterable<T> models,
   ) {
     ensureCacheExists<T>(collectionName);
     modelCache[collectionName]!.replaceAll(models);

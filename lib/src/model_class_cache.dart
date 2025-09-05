@@ -67,7 +67,7 @@ class ModelClassCache<T extends Model?> {
     });
   }
 
-  void replaceAll(List<T> models) {
+  void replaceAll(Iterable<T> models) {
     modelCache.clear();
     for (var model in models) {
       add(model);
