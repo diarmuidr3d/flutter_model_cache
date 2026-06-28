@@ -1,3 +1,7 @@
+## 0.1.2
+
+- Export inverse association
+
 ## 0.1.1
 
 - Update changelog

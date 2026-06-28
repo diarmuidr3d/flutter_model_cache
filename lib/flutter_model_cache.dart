@@ -7,6 +7,7 @@ export 'src/model_list_stream.dart';
 export 'src/enum_key.dart';
 export 'src/stream_state.dart';
 export 'src/association_single.dart';
+export 'src/association_inverse.dart';
 export 'src/association_multi.dart';
 export 'src/association_register.dart';
 export 'src/test_helpers/fake_model_factory.dart';
