@@ -3,7 +3,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 class PersistedCacheStorage {
   static PersistedCacheStorage _singleton = PersistedCacheStorage._internal();
 
-  var _storage = const FlutterSecureStorage();
+  var _storage = FlutterSecureStorage();
 
   factory PersistedCacheStorage() {
     return _singleton;
@@ -16,12 +16,7 @@ class PersistedCacheStorage {
   }
 
   Future<String?> read({required String collection, int? id}) async {
-    if (id != null) {
-      _storage.read(
-        key: _key(collection: collection, id: id),
-      );
-    }
-    return _storage.read(key: collection);
+    return _storage.read(key: _key(collection: collection, id: id));
   }
 
   Future<void> write({
