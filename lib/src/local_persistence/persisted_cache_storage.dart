@@ -15,7 +15,7 @@ class PersistedCacheStorage {
     _storage = store;
   }
 
-  Future<String?> read({required String collection, int? id}) async {
+  Future<String?> read({required String collection, int? id}) {
     return _storage.read(key: _key(collection: collection, id: id));
   }
 
@@ -23,14 +23,14 @@ class PersistedCacheStorage {
     required String collection,
     int? id,
     required String value,
-  }) async {
+  }) {
     return _storage.write(
       key: _key(collection: collection, id: id),
       value: value,
     );
   }
 
-  Future<void> delete({required String collection, int? id}) async {
+  Future<void> delete({required String collection, int? id}) {
     return _storage.delete(
       key: _key(collection: collection, id: id),
     );
