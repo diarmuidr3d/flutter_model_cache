@@ -148,6 +148,7 @@ abstract class GenericModelFactory {
     final model = (modelCache[collectionName] as ModelClassCache<T>?)
         ?.removeById(id);
     PersistedCacheStorage().delete(collection: collectionName, id: id);
+    // InverseAssociationRegistry.clearForModel(collectionName, id);
     return model;
   }
 
@@ -173,6 +174,7 @@ abstract class GenericModelFactory {
 
   void clearForCollection<T extends Model>(String collectionName) {
     modelCache.remove(collectionName);
+    // InverseAssociationRegistry.clearForCollection(collectionName);
   }
 
   void replaceCacheForCollection<T extends Model>(
