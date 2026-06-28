@@ -1,3 +1,11 @@
+## 0.1.1
+
+- Update changelog
+
+## 0.1.0
+
+- Support inverse associations
+
 ## 0.0.13
 
 - When models come in they should be handled as iterable type rather than list
