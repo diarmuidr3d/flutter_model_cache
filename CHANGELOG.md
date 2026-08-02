@@ -1,3 +1,7 @@
+## 0.1.3
+
+- Add a `streamModels` method to `MultiAssociation`
+
 ## 0.1.2
 
 - Export inverse association

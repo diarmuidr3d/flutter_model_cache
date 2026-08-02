@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'model.dart';
 import 'model_factory.dart';
+import "package:async/async.dart" show StreamZip;
 
 class MultiAssociation<T extends Model> {
   MultiAssociation({required this.collection, this.ids});
@@ -97,5 +98,21 @@ class MultiAssociation<T extends Model> {
       onCancel: _onCancelStream,
     );
     return _streamController!;
+  }
+
+  Stream<Iterable<T?>> _idsToModelsStream(Iterable<int> ids) {
+    Iterable<Stream<T?>> streams = ids.map((id) {
+      return ModelFactory().streamModel<T>(collection, id);
+    });
+    return StreamZip(streams);
+  }
+
+  Stream<Iterable<T?>> streamModels() {
+    if (ids == null || ids!.isEmpty) {
+      return Stream.value([]);
+    }
+    final idsStream = streamIds.asyncExpand((ids) => _idsToModelsStream(ids));
+    updateStreamController();
+    return idsStream;
   }
 }
