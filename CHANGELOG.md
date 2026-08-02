@@ -1,3 +1,8 @@
+## 0.1.4
+
+- Fix async dependency
+
+
 ## 0.1.3
 
 - Add a `streamModels` method to `MultiAssociation`
